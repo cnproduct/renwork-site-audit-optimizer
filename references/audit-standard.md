@@ -39,3 +39,7 @@
 记录 domain、环境（local/staging/production）、URL→快照、模板/语言、设备、日期与工具。把 known_urls、tested_urls、failed_fetches、sampling_reason、excluded_routes 写入 scope.json；未知全站总数写 unknown。检查覆盖率是量表分值覆盖，页面覆盖率是测试 URL / 已知 URL，不能混为一谈。
 
 跨页面检查只有适用范围都完成才能 PASS；抽样结论仅对样本成立。部分完成仍为 NOT_RUN，但 notes 可以列已完成/已发现问题，优先级台账继续收录已发现故障。schema 不适用、无图片等条件可说明，不为了满分新增组件；当前量表没有可删除权重的 N/A。存在单项不适用而未测时保留分数缺口，不强求 100 分。
+
+## 细分品类与季节优化的接入
+
+当用户要求趋势/采购季优化，使用 [品类与季节流程](category-seasonal-growth.md)，并将证据附到原有检查项：facts 检查趋势/交期与公司能力的事实边界；answers 检查具体品类的采购问题；buyer_path 检查当前阶段的样品/RFQ路径；localization 检查市场/气候/年度；analytics 检查可比周期与合格询盘口径。其它原标准仍适用，不能仅完成新子项就让整项通过。量表 1.0.0 的权重保持不变，不给“热门产品”或新增趋势徽章额外加分。

@@ -9,6 +9,7 @@ import sys
 import tempfile
 
 from site_audit import audit, compare, digest, optimize, repair, RUBRIC, write_json
+from seasonal_plan import build_plan, write_plan, STAGES
 
 
 def must_reject(fn):
@@ -119,7 +120,58 @@ def main():
         result = subprocess.run([sys.executable, str(Path(__file__).with_name("site_audit.py")), "audit", str(empty), "--out", str(base / "empty-report")], capture_output=True)
         assert result.returncode == 2 and not (base / "empty-report").exists()
         assert sum(r[2] for r in RUBRIC) == 100
+        # Procurement calendar: explicit cross-year inputs, immutable briefs, bounded scenarios.
+        brief = json.loads((Path(__file__).resolve().parents[1] / "assets/seasonal-brief.example.json").read_text())
+        saved = copy.deepcopy(brief)
+        calendar = build_plan(brief)
+        assert brief == saved
+        item = calendar["categories"][0]
+        assert item["planning_status"] == "HYPOTHETICAL"
+        assert item["scenarios"]["conservative"]["rfq_start"] == "2026-11-02"
+        assert item["scenarios"]["tight"]["rfq_start"] == "2027-01-07"
+        assert item["scenarios"]["conservative"]["content_start"] == "2026-10-05"
+        assert all(v == "NOT_RUN" for v in item["research_status"].values())
+        for scenario in item["scenarios"].values():
+            assert [s["stage"] for s in scenario["stages"]] == list(STAGES)
+            assert scenario["stages"][-1]["end"] == "2027-04-01"
+            assert all(a["end"] == b["start"] for a, b in zip(scenario["stages"], scenario["stages"][1:]))
+        for day, phase in [("2026-10-01", "RESEARCH_AND_DEVELOPMENT"), ("2026-12-01", "PROCUREMENT_WINDOW"),
+                           ("2027-02-01", "TIGHT_WINDOW_RECHECK_CAPACITY"), ("2027-05-01", "IN_SEASON_REPLENISHMENT_REVIEW"),
+                           ("2027-09-01", "POST_SEASON_NEXT_CYCLE")]:
+            case = copy.deepcopy(brief)
+            case["as_of"] = day
+            assert build_plan(case)["categories"][0]["phase"] == phase
+        south = copy.deepcopy(brief["categories"][0])
+        south.update(id="swimwear-au-summer-2027", market="AU", hemisphere="Southern", in_stock_by="2027-10-01", season_end="2028-02-29")
+        multi = copy.deepcopy(brief)
+        multi["categories"].append(south)
+        dual = write_plan(multi, base / "calendar")
+        assert dual["categories"][0]["scenarios"] != dual["categories"][1]["scenarios"]
+        assert len(dual["categories"]) == 2 and dual["website_changes"] == "NOT_APPLIED"
+        assert all((base / "calendar" / f).stat().st_size > 0 for f in ("plan.json", "calendar.md", "prompts.md"))
+        must_reject(lambda: write_plan(brief, base / "calendar"))
+        for mutation in ("missing", "negative", "reverse", "boolean", "no_source", "bad_date", "bad_end", "bad_id"):
+            case = copy.deepcopy(brief)
+            c = case["categories"][0]
+            if mutation == "missing":
+                del c["lead_time_days"]["sampling"]
+            elif mutation == "negative":
+                c["lead_time_days"]["sampling"]["min"] = -1
+            elif mutation == "reverse":
+                c["lead_time_days"]["sampling"].update(min=30, max=20)
+            elif mutation == "boolean":
+                c["lead_time_days"]["sampling"]["min"] = True
+            elif mutation == "no_source":
+                c["lead_time_days"]["sampling"]["source"] = ""
+            elif mutation == "bad_date":
+                c["in_stock_by"] = "2027-02-29"
+            elif mutation == "bad_end":
+                c["season_end"] = "2026-01-01"
+            else:
+                case["categories"].append(copy.deepcopy(c))
+            must_reject(lambda: build_plan(case))
     print("PASS: scoring/coverage, immutable input, safe repairs, idempotence, parser boundaries, artifact/scope validation, stale evidence, empty/private/symlink rejection, duplicate titles, malformed JSON-LD, CLI failure")
+    print("PASS: seasonal cross-year arithmetic, explicit hypotheses, milestone continuity, procurement phases, hemisphere-specific dates, incomplete/invalid inputs and output overwrite rejection")
 
 
 if __name__ == "__main__":

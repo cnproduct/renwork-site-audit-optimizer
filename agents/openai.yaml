@@ -1,4 +1,4 @@
 interface:
   display_name: "RenWork 网站诊断与优化"
-  short_description: "全面诊断已有网站，按证据打分并直接修复，交付前后对比与逐项变更说明"
-  default_prompt: "使用 $renwork-site-audit-optimizer 全面诊断这个已有网站，在可用源码中直接完成优化，输出评分、覆盖率、改后项目、逐项修改说明和复测证据。"
+  short_description: "诊断并直接优化网站，结合细分品类趋势、季节采购日历与买家需求生成实施提示词"
+  default_prompt: "使用 $renwork-site-audit-optimizer 诊断并直接优化这个已有网站；按细分品类、Google/Pinterest/AI 搜索趋势和买家采购周期生成实施提示词，交付前后评分、实际修改、复测与证据。"

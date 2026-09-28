@@ -24,6 +24,25 @@
 - 逐项说明原问题、实际修改、原因、文件/URL、证据、复测和回退方式。
 - 自带零第三方依赖的静态助手，生成 JSON/中文报告、候选站点、前后 diff 和变更台账。
 
+## V1.1：细分品类、趋势与采购季优化
+
+新增 [趋势与采购周期方法](references/category-seasonal-growth.md) 和 [可直接执行的提示词](references/seasonal-prompts.md)：Google Trends、Pinterest Trends、AI 搜索可见度/买家问题分别研究，再与真实询盘交叉判断；按市场、半球、年度和实际交期倒推采购与内容日期。包含 Activewear、Sportswear、Running Wear、Swimming Wear、Beach Wear 五类适配，并可沿用同一方法扩展其他行业。
+
+```text
+使用 $renwork-site-audit-optimizer，针对我的网站及源码，
+按各细分品类研究 Google Trends、Pinterest Trends 与 AI 搜索信号，
+结合目标市场的季节、节日及实际打样/生产/运输周期，
+生成采购日历和逐品类优化提示词，直接完成本轮可执行修改并复测。
+```
+
+复制并填写 [示例简报](assets/seasonal-brief.example.json) 后生成情景日历与逐品类提示词：
+
+```bash
+python3 scripts/seasonal_plan.py /path/to/category-brief.json --out /path/to/new-seasonal-plan
+```
+
+示例日期/交期是明确标注的假设，没有实时趋势数字。脚本只计算日期并生成 `plan.json`、`calendar.md`、`prompts.md`；平台研究与网站实施由 Skill 后续执行。不会自动创建定时任务。原 100 分审计量表保持不变。
+
 ## 运行静态助手
 
 ```bash
@@ -42,4 +61,4 @@ python3 scripts/test_site_audit.py
 
 本仓库含 Skill 工作流和保守静态工具，不是托管 SaaS、完整爬虫、自动 CMS 登录器或安全扫描器。官网实际部署与账号数据的验证依赖对应权限；量表不是搜索引擎提供的分数。
 
-版本：1.0.0 · MIT License。
+版本：1.1.0（审计量表 1.0.0） · MIT License。

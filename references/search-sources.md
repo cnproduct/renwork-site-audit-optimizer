@@ -1,9 +1,14 @@
 # 官方来源与时效
 
-核对基准日期：2026-09-27。下列来源是可更新的依据；使用时重新查看页面修订时间和适用性，把检查日期/链接/结论写入本次证据。账号功能以实际可见界面为准，不从旧报告名称推测新能力。
+核对基准日期：2026-09-28。下列来源是可更新的依据；使用时重新查看页面修订时间和适用性，把检查日期/链接/结论写入本次证据。账号功能以实际可见界面为准，不从旧报告名称推测新能力。
 
 | 来源 | 用于本 Skill 的判断 |
 |---|---|
+| [Google Trends 数据口径](https://support.google.com/trends/answer/4365533?hl=en) | 抽样与归一化；0–100 是相对兴趣，不是搜索量或订单。 |
+| [Google Trends related searches](https://support.google.com/trends/answer/4355000?hl=en) | 区分 Top/Rising；Breakout 对应增长超过 5000%，不能与普通 +320% 标注混用。 |
+| [Pinterest Trends 官方说明](https://help.pinterest.com/en/business/article/pinterest-trends) | 区分搜索、收藏、购物与预测，记录地区/受众/时间筛选；功能因地区与账号而异。 |
+| [Google AI Search 报告](https://support.google.com/webmasters/answer/16984139) | 当前文档列本站 AI 展示及页面/国家/日期/设备等口径；按实有字段导出，不虚构全市场 AI 查询量。 |
+| [Bing AI Visibility：Intents、Topics、Citation Share、Compare](https://blogs.bing.com/search/2026/6/New-AI-Visibility-Insights-in-Bing-Webmaster-Tools-Intents-Topics-Citation-Share-Compare/) | 主题与意图用于内容缺口观察；引用份额不是流量份额或内容质量分，是否可见以实际账号为准。 |
 | [Google AI features and your website](https://developers.google.com/search/docs/appearance/ai-features) | Google AI 搜索沿用基本 SEO；符合资格不保证索引/展示，不要求特殊 AI 文件或专用 Schema。正文可发现、真实、有用才是优化对象。 |
 | [Google canonical](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls) | 规范 URL 是信号协调问题；根据重复页面/实际站点意图判断，不把一律自指 canonical 当修复。 |
 | [Google structured data policies](https://developers.google.com/search/docs/appearance/structured-data/sd-policies) | 标记需匹配可见内容且满足适用政策；语法有效不能保证富结果。 |

@@ -76,3 +76,11 @@ audit-delivery/
 ## 搜索与业务结果单列
 
 发布时间、HTTP/渲染、表单收件、Search Console/Bing 权限和收录、AI 引用观察、有效线索分别记录。AI 观察至少给出引擎/模型、日期、市场/语言、联网模式、问题、引用 URL、重复次数和样本分母。实验只说明该样本；曝光、点击、咨询、合格询盘与成交是不同指标。没有账号数据保持 NOT_RUN，不估造访问量、排名、引用率或询盘涨幅。
+
+## 品类与季节优化交付（Skill 1.1.0）
+
+按 [品类流程](category-seasonal-growth.md) 补充 `trend-evidence`、`procurement-calendar`、`category-page-actions`、`category-prompts`；可用 Markdown/JSON/CSV，不强制新数据库。逐来源记录 OBSERVED/HYPOTHESIS/UNAVAILABLE，逐改动关联品类、市场、采购阶段、证据和实际执行状态。季节规划脚本的 NOT_RUN 只表示尚未研究，不是平台不存在。
+
+规划助手输出 `plan.json`（完整输入/假设及两种情景）、`calendar.md`、`prompts.md`。它不采集平台数据、不确认企业事实、不修改网站；不要将运行成功记为趋势已验证或网站已优化。助手使用串行日历天，实际并行流程/工作日/节假日须先转换。完整字段示例见 [JSON 简报](../assets/seasonal-brief.example.json)；未知关键日期/交期先交付待填方案，脚本拒绝缺项。
+
+本次升级的是 Skill 功能版本 1.1.0，原审计规则版本仍为 1.0.0，保证前后 100 分量表可比。重复运行要核查执行日和事件年度，不直接执行过期提示词；日历上的日期不表示已设置后台自动任务。

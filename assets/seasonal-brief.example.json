@@ -1,0 +1,32 @@
+{
+  "site_url": "https://example.invalid",
+  "as_of": "2026-09-28",
+  "categories": [
+    {
+      "id": "swimwear-us-summer-2027",
+      "name": "Swimming Wear / Performance Swim",
+      "market": "US",
+      "language": "en-US",
+      "hemisphere": "Northern; target region climate still requires research",
+      "buyer": "Private-label swimwear brand procurement manager",
+      "event": "Illustrative 2027 summer collection; NOT a verified market peak",
+      "timing_status": "assumption",
+      "timing_source": "SYNTHETIC planning example; replace with buyer calendar and actual market evidence",
+      "in_stock_by": "2027-04-01",
+      "season_end": "2027-08-31",
+      "page_path": "/products/swimwear/",
+      "keywords": ["chlorine resistant swimsuit", "recycled swimwear fabric", "ribbed bikini wholesale"],
+      "buyer_questions": ["Which fabric and test evidence fit the intended pool use?", "What information is needed to confirm sample and bulk delivery timing?"],
+      "lead_time_days": {
+        "buyer_review": {"min": 7, "max": 14, "status": "assumption", "source": "Synthetic calendar days; replace with buyer process"},
+        "sampling": {"min": 14, "max": 28, "status": "assumption", "source": "Synthetic; includes approval, not a 5-7 day company promise"},
+        "production": {"min": 30, "max": 45, "status": "assumption", "source": "Synthetic; replace with confirmed capacity/material plan"},
+        "inspection": {"min": 3, "max": 7, "status": "assumption", "source": "Synthetic; replace with inspection booking"},
+        "freight": {"min": 20, "max": 35, "status": "assumption", "source": "Synthetic; replace with actual lane and mode"},
+        "customs": {"min": 3, "max": 7, "status": "assumption", "source": "Synthetic; no tariff eligibility assertion"},
+        "buffer": {"min": 7, "max": 14, "status": "assumption", "source": "Synthetic; replace with distribution/stocking requirements"}
+      },
+      "content_lead_days": {"min": 14, "max": 28, "status": "assumption", "source": "Synthetic editorial allowance; not an indexing guarantee"}
+    }
+  ]
+}
